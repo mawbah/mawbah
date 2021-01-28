@@ -55,8 +55,8 @@ URxvt*skipScroll:	True
 URxvt*transparent:	False
 URxvt*fading:	0
 URxvt*fadeColor: black
-URxvt*font: xft:xos4 Terminus:Style=Regular:size=12
-URxvt*boldFont: xft:xos4 Terminus:Style=Regular:size=12
+URxvt*font: xft:xos4 Terminus:Style=Regular:size=14
+URxvt*boldFont: xft:xos4 Terminus:Style=Regular:size=14
 URxvt*italicFont: 
 !URxvt*boldItalicFont: 
 !URxvt*iconFile: /usr/share/pixmaps/urxvt_32x32.xpm
