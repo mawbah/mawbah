@@ -1,13 +1,13 @@
 #!/bin/bash
-#   Cтартовый файл. Его и нужно тянуть с github.
-#   Запустить mawbah можно из консоли двумя способами:
-#   1. с помощью curl (3 ссылки на выбор):
-#      $ curl -L https://github.com/mawbah/mawbah/raw/main/mawbah.sh | sh
-#      $ curl -L https://raw.github.com/mawbah/mawbah/master/mawbah.sh | sh
-#      $ сurl -L https://raw.githubusercontent.com/mawbah/mawbah/master/mawbah.sh | sh
+#Cтартовый файл. Его и нужно тянуть с github.
+#Запустить mawbah можно из консоли двумя способами:
+#1: с помощью curl (3 ссылки на выбор):
+#   $ curl -L https://github.com/mawbah/mawbah/raw/main/mawbah.sh | sh
+#   $ curl -L https://raw.github.com/mawbah/mawbah/master/mawbah.sh | sh
+#   $ сurl -L https://raw.githubusercontent.com/mawbah/mawbah/master/mawbah.sh | sh
 #
-#   2. склонировать git'ом и запустить из директории репозитория:
-#      $ git clone https://github.com/mawbah/mawbah.git && cd mawbah && ./mawbah.sh 
+#2: клонировать git'ом и запустить из директории репозитория:
+#   $ git clone https://github.com/mawbah/mawbah.git "$HOME" && source "$HOME/mawbah/mawbah.sh"
 
 export Name_Script=$(basename $0)
 export Time_Install="$(date +%d.%m.%y_%R)"
@@ -36,14 +36,17 @@ case "${Name_Script}" in
         pacman -R ${Mark_Utility_Install}
         ;;
     mawbah.sh) 
-        source ${Path_Install}/navigator
+        #определяем путь до корня репозитория
+        Path_Install="$(cd $(dirname $0) && pwd)"
         ;;
     *)
-        echo -e "Unintended launch.\nCheck the shell (allowed sh, bash, zsh).\nCheck the name of the startup script."
+        echo -e "Err2:Wrong <Name_Script>! ["${Name_Script}"]\nCheck the shell (allowed sh, bash, zsh).\nCheck the name of the startup script."
         exit 2 
         ;;
 esac
 
+#запускаем навигатор с главным меню
+source ${Path_Install}/navigator.sh
 
 
 
