@@ -10,27 +10,37 @@
 #      $ git clone https://github.com/mawbah/mawbah.git && cd mawbah && ./mawbah.sh 
 
 export Name_Script=$(basename $0)
-export Time_Installation="$(date +%R_%d.%m.%y)"
+export Time_Install="$(date +%d.%m.%y_%R)"
 export Link_Repository="https://github.com/mawbah/mawbah.git"
-#по имени процесса определяем способ запуска скрипта
-if [[ "${Name_Script}" =  in
-    sh|bash|zhs) #если скрипт запущен через curl, то нужно качать репозиторий 
-        #если нельзя установить в /tmp (его нет или недостаточно прав), то устанавливаем в домашнюю директорию
+
+#если скрипт запущен первым способом, то клонируем репозиторий
+case "${Name_Script}" in
+    sh|bash|zsh)
+        #если нельзя установить в /tmp (нет директории или недостаточно прав), то устанавливаем в $HOME
         if [[ -d /tmp && -r /tmp && -w /tmp && -x /tmp ]] then
-            export Path_Installation="/tmp/"
+            export Path_Install="/tmp/mawbah"
         else
-            export Path_Installation="~/"
+            export Path_Install="$HOME/mawbah"
         fi
+
         #если осталась старая директория - переименуем её
-        mv "${Path_Installation}mawbah" "${Path_Installation}${Time_Installation}_mawbah" 
+        mv "${Path_Install}" "${Path_Install}_${Time_Install}" 
+
         #качаем git, если его нет
-        [[ -z "$(pacman -Qi git)" ]] && pacman -Sy --noconfirm git && Mark_Utility_Installation="git $Mark_Utility_Installation"
+        [[ -z "$(pacman -Qi git)" ]] && pacman -Sy --noconfirm git && Mark_Utility_Install="git"
+
         #качаем репозиторий
-        git clone "${Link_Repository}"
+        git clone "${Link_Repository}" "${Path_Install}"
+
         #удаляем установленное 
-        pacman -R ${Mark_Utility_Installation}
+        pacman -R ${Mark_Utility_Install}
         ;;
-    mawbah.sh)
+    mawbah.sh) 
+        source ${Path_Install}/navigator
+        ;;
+    *)
+        echo -e "Unintended launch.\nCheck the shell (allowed sh, bash, zsh).\nCheck the name of the startup script."
+        exit 2 
         ;;
 esac
 
