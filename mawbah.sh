@@ -17,7 +17,7 @@ export Link_Repository="https://github.com/mawbah/mawbah.git"
 case "${Name_Script}" in
     sh|bash|zsh)
         #если нельзя установить в /tmp (нет директории или недостаточно прав), то устанавливаем в $HOME
-        if [[ -d /tmp && -r /tmp && -w /tmp && -x /tmp ]] then
+        if [[ -d /tmp && -r /tmp && -w /tmp && -x /tmp ]]; then
             export Path_Install="/tmp/mawbah"
         else
             export Path_Install="$HOME/mawbah"
