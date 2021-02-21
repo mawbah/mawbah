@@ -22,28 +22,22 @@ case "${Name_Script}" in
         else
             export Path_Install="$HOME/mawbah"
         fi
-
         #если осталась старая директория - переименуем её
-        mv "${Path_Install}" "${Path_Install}_${Time_Install}" 
-
+        [[ -d ${Path_Install} ]] && mv "${Path_Install}" "${Path_Install}_${Time_Install}" 
         #качаем git, если его нет
         [[ -z "$(pacman -Qi git)" ]] && pacman -Sy --noconfirm git && Mark_Utility_Install+=" git"
-
         #качаем репозиторий
         git clone "${Link_Repository}" "${Path_Install}"
-        
-
         #удаляем установленное 
-        pacman -R ${Mark_Utility_Install}
-        ;;
+        [[ -n ${Mark_Utility_Install} ]] && pacman -R ${Mark_Utility_Install};;
+
     mawbah.sh) 
         #определяем путь до корня репозитория
-        export Path_Install="$(cd $(dirname $0) && pwd)"
-        ;;
+        export Path_Install="$(cd $(dirname $0) && pwd)";;
+
     *)
         echo -e "Err2:Wrong <Name_Script>! ["${Name_Script}"]\nCheck the shell (allowed sh, bash, zsh).\nCheck the name of the startup script."
-        exit 2 
-        ;;
+        exit 2;;
 esac
 
 #запускаем навигатор с главным меню
@@ -52,5 +46,3 @@ source ${Path_Install}/litenavi/litenavi.sh -m files.lnm
         echo 5!!!!!!!!!!!!!!!!!!!!!
         sleep 6
 exit
-
-
