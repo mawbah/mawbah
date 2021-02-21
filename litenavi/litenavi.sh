@@ -76,7 +76,7 @@ Read_Key() { #ловим нажатия
   stty -icanon -echo min 0        # disable buffering/echo, allow read to poll
   dd count=1 > /dev/null 2>&1     # Throw away anything currently in the buffer
   stty min 1                      # Don't allow read to poll anymore
-  Key=$(dd count=1 2> /dev/null < /dev/tty)  # do a single read(2) call
+  Key=$(dd count=1 2> /dev/null)  # do a single read(2) call
   stty "$STTY_Settings"           # restore terminal settings
 }
 
