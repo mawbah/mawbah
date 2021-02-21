@@ -44,6 +44,8 @@ LN_Screen_Rendering (){ #отрисовка списка
     tput cup ${LN_Info_Area} 0 #ставим курсор на первую строку видимой области
     tput setaf 2 #задаём цвет 
     printf " %s \n" ${LN_Mark_List[@]:${LN_Top_Line}:${LN_Number_of_Visible_Lines}} #печатаем отметки
+    echo !!!!!!!!akfdjsl
+    sleep 9
     tput sgr0 #сбрасываем все атрибуты терминала
 }
 
@@ -71,6 +73,14 @@ LN_Resize_Window() {
 }
 trap 'LN_Resize_Window' WINCH # ловушка на изменение размера окна
 
+readkey() {
+  settings=$(stty -g)             # save terminal settings
+  stty -icanon -echo min 0        # disable buffering/echo, allow read to poll
+  dd count=1 > /dev/null 2>&1     # Throw away anything currently in the buffer
+  stty min 1                      # Don't allow read to poll anymore
+  REPLY=$(dd count=1 2> /dev/null)  # do a single read(2) call
+  stty "$settings"                # restore terminal settings
+}
 
 #параметры скрипта
 while getopts "m:d" OPTION; do
