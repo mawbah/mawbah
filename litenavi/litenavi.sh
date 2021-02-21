@@ -71,7 +71,7 @@ LN_Resize_Window() {
 }
 trap 'LN_Resize_Window' WINCH # ловушка на изменение размера окна
 
-readkey() {
+Read_Key() {
   settings=$(stty -g)             # save terminal settings
   stty -icanon -echo min 0        # disable buffering/echo, allow read to poll
   dd count=1 > /dev/null 2>&1     # Throw away anything currently in the buffer
@@ -107,7 +107,7 @@ Module_List #печатаем лист
 LN_Mark_List=($(printf "%.s \n" ${Module_List[@]}))
 LN_Resize_Window #полностью перерисовываем экран вместе с курсором
 
-while read -s -n1 < /dev/tty; do
+while Read_Key ; do
     case "$REPLY" in
         j) #вниз по списку.
             if [[ ${LN_Current_Line} -lt $((${LN_Number_of_Lines}-1)) ]]; then #если текущая строка не последняя в списке, то
