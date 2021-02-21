@@ -107,7 +107,7 @@ Module_List #печатаем лист
 LN_Mark_List=($(printf "%.s \n" ${Module_List[@]}))
 LN_Resize_Window #полностью перерисовываем экран вместе с курсором
 LN_Help="  <j>-down <k>-up ${Module_Help} <space>-select <enter>-apply to selected"
-
+sleep 3
 while Read_Key; do
     case "${Key}" in
 
