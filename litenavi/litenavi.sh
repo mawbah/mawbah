@@ -44,8 +44,6 @@ LN_Screen_Rendering (){ #отрисовка списка
     tput cup ${LN_Info_Area} 0 #ставим курсор на первую строку видимой области
     tput setaf 2 #задаём цвет 
     printf " %s \n" ${LN_Mark_List[@]:${LN_Top_Line}:${LN_Number_of_Visible_Lines}} #печатаем отметки
-    echo !!!!!!!!akfdjsl
-    sleep 9
     tput sgr0 #сбрасываем все атрибуты терминала
 }
 
