@@ -47,7 +47,9 @@ esac
 
 #запускаем навигатор с главным меню
 cd ${Path_Install}/menu
+sleep 8
 source ${Path_Install}/litenavi/litenavi.sh -m files.lnm
+sleep 8
 exit
 
 
