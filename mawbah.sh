@@ -37,7 +37,7 @@ case "${Name_Script}" in
         ;;
     mawbah.sh) 
         #определяем путь до корня репозитория
-        Path_Install="$(cd $(dirname $0) && pwd)"
+        export Path_Install="$(cd $(dirname $0) && pwd)"
         ;;
     *)
         echo -e "Err2:Wrong <Name_Script>! ["${Name_Script}"]\nCheck the shell (allowed sh, bash, zsh).\nCheck the name of the startup script."
@@ -46,7 +46,8 @@ case "${Name_Script}" in
 esac
 
 #запускаем навигатор с главным меню
-source ${Path_Install}/navigator.sh
-
+cd ${Path_Install}/menu
+source ${Path_Install}/litenavi/litenavi.sh -m files.lnm
+exit
 
 
