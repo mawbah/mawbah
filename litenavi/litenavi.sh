@@ -71,14 +71,6 @@ LN_Resize_Window() {
 }
 trap 'LN_Resize_Window' WINCH # ловушка на изменение размера окна
 
-Read_Key() { #ловим нажатия
-  STTY_Settings=$(stty -g)        # save terminal settings
-  stty -icanon -echo min 0        # disable buffering/echo, allow read to poll
-  dd count=1 > /dev/null 2>&1     # Throw away anything currently in the buffer
-  stty min 1                      # Don't allow read to poll anymore
-  Key=$(dd count=1 2> /dev/null)  # do a single read(2) call
-  stty "$STTY_Settings"           # restore terminal settings
-}
 
 #параметры скрипта
 while getopts "m:d" OPTION; do
@@ -106,11 +98,9 @@ source ${Path_Install}/litenavi/${Module_Name}
 Module_List #печатаем лист
 LN_Mark_List=($(printf "%.s \n" ${Module_List[@]}))
 LN_Resize_Window #полностью перерисовываем экран вместе с курсором
-LN_Help="  <j>-down <k>-up ${Module_Help} <space>-select <enter>-apply to selected"
-sleep 3
-while Read_Key; do
-    case "${Key}" in
 
+while read -s -n1 < /dev/tty; do
+    case "$REPLY" in
         j) #вниз по списку.
             if [[ ${LN_Current_Line} -lt $((${LN_Number_of_Lines}-1)) ]]; then #если текущая строка не последняя в списке, то
                 [[ ${LN_Current_Line} -eq $((${LN_Top_Line}+${LN_Visible_List_Area}-1)) ]] && ((++LN_Top_Line)) && LN_Screen_Rendering #если текущая строка последняя в видимой области, то сдвигаем область вниз на одну строку и перерисовываем экран
@@ -137,10 +127,6 @@ while Read_Key; do
             [[ ${LN_Output[0]} = '' ]] && LN_Output+=${LN_Current_Line}
             Module_Output ${LN_Output[@]}
             break;;
-
-        $'\033[11~'|$'\033[[A') #пoмощь
-            tput cup 0 0
-            printf "%s" ${LN_Help};;
 
         q) #q - выход из скрипта
             break;;

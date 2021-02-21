@@ -23,8 +23,6 @@ done
 : ${Root_Dir:=$PWD} #корневой каталог по умолчанию
 : ${Files_Block_2=*} #маска для второго списка фалов по умолчанию (все видимые файлы)
 
-Module_Help="<h>-exit dir <l>-open dir"
-
 Module_List (){ #создаём список файлов
     IFS="
 "
@@ -33,7 +31,7 @@ LN_Mark_List=($(printf "%.s \n" ${Module_List[@]}))
 }
 
 Module_Keys (){
-case ${Key} in
+case $REPLY in
     h${Lock}) #переход в родительский каталог
         if [[ "$PWD" != "${Root_Dir}" ]]; then #если текущий каталог не корень, то
             Old_Dir="$(basename $PWD)" #запоминаем имя текущего каталога
