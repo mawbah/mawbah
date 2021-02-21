@@ -27,13 +27,18 @@ case "${Name_Script}" in
         mv "${Path_Install}" "${Path_Install}_${Time_Install}" 
 
         #качаем git, если его нет
-        [[ -z "$(pacman -Qi git)" ]] && pacman -Sy --noconfirm git && Mark_Utility_Install="git"
+        [[ -z "$(pacman -Qi git)" ]] && pacman -Sy --noconfirm git && Mark_Utility_Install+=" git"
 
         #качаем репозиторий
         git clone "${Link_Repository}" "${Path_Install}"
+        echo 1!!!!!!!!!!!!!!!!!!!!!
+        
+        sleep 4
 
         #удаляем установленное 
         pacman -R ${Mark_Utility_Install}
+        echo 2!!!!!!!!!!!!!!!!!!!!!
+        sleep 4
         ;;
     mawbah.sh) 
         #определяем путь до корня репозитория
@@ -46,10 +51,14 @@ case "${Name_Script}" in
 esac
 
 #запускаем навигатор с главным меню
+        echo 3!!!!!!!!!!!!!!!!!!!!!
+        sleep 3
 cd ${Path_Install}/menu
-sleep 8
+        echo 4!!!!!!!!!!!!!!!!!!!!!
+        sleep 6
 source ${Path_Install}/litenavi/litenavi.sh -m files.lnm
-sleep 8
+        echo 5!!!!!!!!!!!!!!!!!!!!!
+        sleep 6
 exit
 
 
