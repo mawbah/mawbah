@@ -127,6 +127,8 @@ while read -s -n1 < /dev/tty; do
             break;;
 
         '/') #применить
+            echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            sleep 4
             read < /dev/tty
             LN_Search=$(($(printf "%s\n" ${Module_List[@]} | sed -n "/*$REPLY*/=;/*$REPLY*/q; d")-1)) #ищем номер строки с запросом
             [[ -n ${LN_Search} ]] && LN_Current_Line=${LN_Search} && LN_Resize_Window;;
