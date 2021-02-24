@@ -136,7 +136,7 @@ while read -s -n1 < /dev/tty; do
                         LN_Current_Line=$(($(printf "%s\n" ${Module_List[@]} | sed -n "/*${Search}*/=;/*${Search}*/q; d")-1)) #ищем номер строки с запросом
                         LN_Screen_Rendering
                         LN_Cursor_Rendering
-                        tput cup $((${LN_Number_of_Screen_Lines}-1)) 0 #ставим курсор в низ экрана 
+                        tput cup $((${LN_Number_of_Screen_Lines}-2)) 0 #ставим курсор в низ экрана 
                         echo $Search
                         ;;
                 esac
