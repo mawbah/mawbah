@@ -40,7 +40,7 @@ esac
 cd ${Path_Install}/menu
 
 while true; do
-    Script=$(printf "$PWD/%s\n" $(${Path_Install}/litenavi/litenavi.sh))
+    Script=$(eval $(printf "$PWD/%s\n" $(${Path_Install}/litenavi/litenavi.sh)))
     echo ${Script}
     sleep 5
     source ${Script}
