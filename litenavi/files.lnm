@@ -29,13 +29,16 @@ Module_Keys (){
         l${Lock}) #переход в каталог из текущей строки
             Current_File_Name="${Module_List[${LN_Current_Line}]##*	}" #запоминаем имя текущего файла
             Current_File_Type=$(stat -c %A "${Current_File_Name}") #запоминаем тип и разрешения текущего файла
-            if [[ "${Current_File_Type:0:1}" = "d" ]]; then #если текущий файл каталог, то 
-                cd "${Current_File_Name}" #переходим в каталог из текущей строки
-                LN_Current_Line=0 #текущую строку в начало списка
-                LN_Top_Line=0 #видимая область с начала списка
-                Module_List #создаём список файлов нового текущего каталога
-                LN_Screen_Rendering #отрисовываем экран
-            fi;;
+            case ${Current_File_Type:0:1} in
+                'd') #если текущий файл каталог, то переходим в него
+                    cd "${Current_File_Name}"
+                    LN_Current_Line=0 #текущую строку в начало списка
+                    LN_Top_Line=0 #видимая область с начала списка
+                    Module_List #создаём список файлов нового текущего каталога
+                    LN_Screen_Rendering;; #отрисовываем экран
+                '-') #если текущий файл - просто файл, то пытаемся запустить
+                    ${Path_Install}/${Current_File_Name};;
+            esac;;
     esac
 }
 

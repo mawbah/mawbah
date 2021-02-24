@@ -38,12 +38,6 @@ esac
 
 #запускаем навигатор с главным меню
 cd ${Path_Install}/menu
-
-while true; do
-    Script=$(eval printf "$PWD/%s\n" $(${Path_Install}/litenavi/litenavi.sh))
-    echo ${Script}
-    sleep 5
-    source ${Script}
-done
+${Path_Install}/litenavi/litenavi.sh
 
 exit
