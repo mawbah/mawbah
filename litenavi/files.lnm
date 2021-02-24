@@ -1,61 +1,42 @@
 #!/bin/bash
-
-while getopts "i:I:o:m:M:r:lh" OPTION; do
-    case $OPTION in
-        i) #первый информационный блок (можно сюда, к примеру, lsblk засунуть)
-            Info_Block_1="${OPTARG}";;
-        I) #второй информационный блок (к примеру, помощь или описание)
-            Info_Block_2="${OPTARG}";;
-        o) #oпции утилиты stat
-            Options="$(echo ${OPTARG} | sed "s/\(.\)/%\1\t/g")";;
-        m) #первый список файлов
-            Files_Block_1="${OPTARG}";;
-        M) #второй список файлов
-            Files_Block_2="${OPTARG}";;
-        r) #потолок в иерархии каталогов
-            Root_Dir="${OPTARG}";;
-        l) #блокировка клафиш модуля
-            Lock=1;;
-    esac
-done
-
-#чтобы элементы заносились в массив построчно, а не словами
-: ${Root_Dir:=$PWD} #корневой каталог по умолчанию
+source .dir_param
+: ${Root_Dir:=/} #корневой каталог по умолчанию
 : ${Files_Block_2=*} #маска для второго списка фалов по умолчанию (все видимые файлы)
 
 Module_List (){ #создаём список файлов
+    #чтобы элементы заносились в массив построчно, а не словами
     IFS="
 "
-Module_List=($(stat -c "${Options}	%n" ${Files_Block_1} ${Files_Block_2})) #cоздаём список фалов текущего каталога (табуляция в атрибутах!!!)
-LN_Mark_List=($(printf "%.s \n" ${Module_List[@]}))
+    Module_List=($(stat -c "${Options}	%n" ${Files_Block_1} ${Files_Block_2})) #cоздаём список фалов текущего каталога (табуляция в атрибутах!!!)
+    LN_Mark_List=($(printf "%.s \n" ${Module_List[@]}))
 }
 
 Module_Keys (){
-case $REPLY in
-    h${Lock}) #переход в родительский каталог
-        if [[ "$PWD" != "${Root_Dir}" ]]; then #если текущий каталог не корень, то
-            Old_Dir="$(basename $PWD)" #запоминаем имя текущего каталога
-            cd .. #переходим в родительский каталог
-            Module_List #cоздаём список файлов нового текущего каталога
-            LN_Current_Line=$(($(printf "%s\n" ${Module_List[@]} | sed -n "/${Old_Dir}/=;/${Old_Dir}/q; d")-1)) #ищем номер предыдущего текущего каталога в новом списке
-            if [[ ${LN_Current_Line} -gt ${LN_Visible_List_Area} ]]; then #если этот номер больше количества строк в видимой области, то
-                LN_Top_Line=$((${LN_Current_Line}-${LN_Visible_List_Area})) #вычисляем первую строку видимой области для отображения старого текущего каталога
-            else
-                LN_Top_Line=0 #иначе, видимая область с начала списка
-            fi
-            LN_Screen_Rendering #отрисовываем экран
-        fi;;
-    l${Lock}) #переход в каталог из текущей строки
-        Current_File_Name="${Module_List[${LN_Current_Line}]##*	}" #запоминаем имя текущего файла
-        Current_File_Type=$(stat -c %A "${Current_File_Name}") #запоминаем тип и разрешения текущего файла
-        if [[ "${Current_File_Type:0:1}" = "d" ]]; then #если текущий файл каталог, то 
-            cd "${Current_File_Name}" #переходим в каталог из текущей строки
-            LN_Current_Line=0 #текущую строку в начало списка
-            LN_Top_Line=0 #видимая область с начала списка
-            Module_List #создаём список файлов нового текущего каталога
-            LN_Screen_Rendering #отрисовываем экран
-        fi;;
-esac
+    case $REPLY in
+        h${Lock}) #переход в родительский каталог
+            if [[ "$PWD" != "${Root_Dir}" ]]; then #если текущий каталог не корень, то
+                Old_Dir="$(basename $PWD)" #запоминаем имя текущего каталога
+                cd .. #переходим в родительский каталог
+                Module_List #cоздаём список файлов нового текущего каталога
+                LN_Current_Line=$(($(printf "%s\n" ${Module_List[@]} | sed -n "/${Old_Dir}/=;/${Old_Dir}/q; d")-1)) #ищем номер предыдущего текущего каталога в новом списке
+                if [[ ${LN_Current_Line} -gt ${LN_Visible_List_Area} ]]; then #если этот номер больше количества строк в видимой области, то
+                    LN_Top_Line=$((${LN_Current_Line}-${LN_Visible_List_Area})) #вычисляем первую строку видимой области для отображения старого текущего каталога
+                else
+                    LN_Top_Line=0 #иначе, видимая область с начала списка
+                fi
+                LN_Screen_Rendering #отрисовываем экран
+            fi;;
+        l${Lock}) #переход в каталог из текущей строки
+            Current_File_Name="${Module_List[${LN_Current_Line}]##*	}" #запоминаем имя текущего файла
+            Current_File_Type=$(stat -c %A "${Current_File_Name}") #запоминаем тип и разрешения текущего файла
+            if [[ "${Current_File_Type:0:1}" = "d" ]]; then #если текущий файл каталог, то 
+                cd "${Current_File_Name}" #переходим в каталог из текущей строки
+                LN_Current_Line=0 #текущую строку в начало списка
+                LN_Top_Line=0 #видимая область с начала списка
+                Module_List #создаём список файлов нового текущего каталога
+                LN_Screen_Rendering #отрисовываем экран
+            fi;;
+    esac
 }
 
 Module_Output (){

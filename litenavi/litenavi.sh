@@ -1,7 +1,6 @@
 #!/bin/bash  
 #Лёгкий строковый навигатор.
 #Используя различные модули, можно просматривать каталоги и файлы, различные списки.
-
 #  Module_List[0]              file_name 
 #  Module_List[1]              file_name 
 #  Module_List[2]              file_name 

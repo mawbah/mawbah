@@ -1,19 +1,19 @@
 #!/bin/bash
 #Cтартовый файл. Его и нужно тянуть с github.
 #Запустить mawbah можно из консоли двумя способами:
-#1: с помощью curl (3 ссылки на выбор):
+#1) с помощью curl (3 ссылки на выбор):
 #   $ curl -L https://github.com/mawbah/mawbah/raw/main/mawbah.sh | sh
 #   $ curl -L https://raw.github.com/mawbah/mawbah/master/mawbah.sh | sh
 #   $ сurl -L https://raw.githubusercontent.com/mawbah/mawbah/master/mawbah.sh | sh
 #
-#2: клонировать git'ом и запустить из директории репозитория:
+#2) клонировать git'ом и запустить из директории репозитория:
 #   $ git clone https://github.com/mawbah/mawbah.git "$HOME" && source "$HOME/mawbah/mawbah.sh"
 
 export Name_Script=$(basename $0)
 export Time_Install="$(date +%d.%m.%y_%R)"
 export Link_Repository="https://github.com/mawbah/mawbah.git"
 
-#если скрипт запущен первым способом, то клонируем репозиторий
+#если надо, клонируем репозиторий. Определяем путь до него.
 case "${Name_Script}" in
     sh|bash|zsh)
         #если нельзя установить в /tmp (нет директории или недостаточно прав), то устанавливаем в $HOME
@@ -34,13 +34,16 @@ case "${Name_Script}" in
     mawbah.sh) 
         #определяем путь до корня репозитория
         export Path_Install="$(cd $(dirname $0) && pwd)";;
-
-    *)
-        echo -e "Err2:Wrong <Name_Script>! ["${Name_Script}"]\nCheck the shell (allowed sh, bash, zsh).\nCheck the name of the startup script."
-        exit 2;;
 esac
 
 #запускаем навигатор с главным меню
 cd ${Path_Install}/menu
-source ${Path_Install}/litenavi/litenavi.sh -m files.lnm
+
+while true; do
+    Script=$(printf "$PWD//%s\n" ${Path_Install}/litenavi/litenavi.sh)
+    echo ${Script}
+    sleep 5
+    source ${Script}
+done
+
 exit
