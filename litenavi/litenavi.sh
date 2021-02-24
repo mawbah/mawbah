@@ -127,20 +127,9 @@ while read -s -n1 < /dev/tty; do
             break;;
 
         '/') #применить
-            while read -n1 < /dev/tty; do
-                case $REPLY in
-                    $(printf "\n"))
-                        break;;
-                    *)
-                        Search+=$REPLY
-                        LN_Current_Line=$(($(printf "%s\n" ${Module_List[@]} | sed -n "/*${Search}*/=;/*${Search}*/q; d")-1)) #ищем номер строки с запросом
-                        LN_Screen_Rendering
-                        LN_Cursor_Rendering
-                        tput cup $((${LN_Number_of_Screen_Lines}-2)) 0 #ставим курсор в низ экрана 
-                        echo $Search
-                        ;;
-                esac
-            done;;
+            read < /dev/tty
+            LN_Search=$(($(printf "%s\n" ${Module_List[@]} | sed -n "/*$REPLY*/=;/*$REPLY*/q; d")-1)) #ищем номер строки с запросом
+            [[ -n ${LN_Search} ]] && LN_Current_Line=${LN_Search} && LN_Resize_Window;;
 
         'q') #q - выход из скрипта
             break;;
