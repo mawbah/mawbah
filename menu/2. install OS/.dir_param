@@ -1,2 +1,8 @@
 #!/bin/bash
+Files_Block_1=""
+Files_Block_2=""
+Lock=""
+Module_Info_1=""
+Module_Info_2=""
+Options=""
 Root_Dir="${Path_Install}/menu"
