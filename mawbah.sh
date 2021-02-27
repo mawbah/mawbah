@@ -38,6 +38,6 @@ esac
 
 #запускаем навигатор с главным меню
 cd ${Path_Install}/menu
-${Path_Install}/litenavi/litenavi.sh
+${Path_Install}/litenavi/litenavi.sh -d
 
 exit

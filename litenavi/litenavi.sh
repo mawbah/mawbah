@@ -39,6 +39,8 @@ LN_Screen_Rendering (){ #отрисовка списка
     echo
     ${Module_Info_1} #печатаем первый информационный модуль
     ${Module_Info_2} #печатаем второй информационный модуль
+    printf "<<<1>>>"
+    sleep 4
     printf "   %.$((${LN_Number_of_Screen_Columns}-3))s\n" ${Module_List[@]:${LN_Top_Line}:${LN_Number_of_Visible_Lines}} #печатаем видимую часть списка
     tput cup ${LN_Info_Area} 0 #ставим курсор на первую строку видимой области
     tput setaf 2 #задаём цвет 
