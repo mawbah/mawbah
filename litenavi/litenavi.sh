@@ -76,7 +76,7 @@ while getopts "m:d" OPTION; do
         m) #имя подключаемого модуля
             Module_Name="${OPTARG}";; 
         d) #для отслеживания состояния переменных
-            . ${Path_Install}/litenavi/debag.sh
+            source ${Path_Install}/litenavi/debag.sh
             Debug_Toggle="Debug";;
     esac
 done
