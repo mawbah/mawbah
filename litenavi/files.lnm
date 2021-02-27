@@ -37,7 +37,7 @@ Module_Keys (){
                     Module_List #создаём список файлов нового текущего каталога
                     LN_Screen_Rendering;; #отрисовываем экран
                 '-') #если текущий файл - просто файл, то пытаемся запустить
-                    source ${Path_Install}/${Current_File_Name};;
+                    source "${Path_Install}/${Current_File_Name}";;
             esac;;
     esac
 }
