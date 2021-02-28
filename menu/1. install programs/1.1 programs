@@ -1,6 +1,4 @@
 #!/bin/bash
 export Lock="1"
 cd "${Path_Install}/programs"
-Programs=($(eval ${Path_Install}/litenavi/litenavi.sh < /dev/tty))
-echo !!!???${LN_Output}???!!!
-sleep 5
+${Path_Install}/litenavi/litenavi.sh > ${Path_Install}/proglist
