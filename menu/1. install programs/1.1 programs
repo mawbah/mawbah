@@ -2,4 +2,6 @@
 export Lock="1"
 cd "${Path_Install}/programs"
 Programs=$(source ${Path_Install}/litenavi/litenavi.sh)
+printf "%s" "${Programs}"
+sleep 4
 pacman -Sy ${Programs}
