@@ -2,4 +2,4 @@
 Lock="1"
 Root_Dir="${Path_Install}/programs"
 cd "${Path_Install}/programs"
-pacman -Sy $(source ${Path_Install}/litenavi/litenavi.sh)
+pacman -Sy $(${Path_Install}/litenavi/litenavi.sh)
