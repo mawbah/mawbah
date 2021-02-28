@@ -1,5 +1,6 @@
 #!/bin/bash
 export Lock="1"
 cd "${Path_Install}/programs"
-Programs=(${Path_Install}/litenavi/litenavi.sh)
+printf "!!!!%s" ${Programs}
+Programs=($(eval ${Path_Install}/litenavi/litenavi.sh))
 printf "%s" ${Programs}
