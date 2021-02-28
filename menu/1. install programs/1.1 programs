@@ -1,4 +1,5 @@
 #!/bin/bash
 export Lock="1"
 cd "${Path_Install}/programs"
-${Path_Install}/litenavi/litenavi.sh | pacman -Sy
+Programs=(${Path_Install}/litenavi/litenavi.sh)
+printf "%s" ${Programs}
