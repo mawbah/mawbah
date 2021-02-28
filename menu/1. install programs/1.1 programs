@@ -2,3 +2,5 @@
 export Lock="1"
 cd "${Path_Install}/programs"
 ${Path_Install}/litenavi/litenavi.sh
+echo !!!???${LN_Output}???!!!
+sleep 5
