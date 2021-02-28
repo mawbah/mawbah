@@ -1,4 +1,7 @@
 #!/bin/bash
+
+
+
 export Lock="1"
 cd "${Path_Install}/programs"
-${Path_Install}/litenavi/litenavi.sh
+${Path_Install}/litenavi/litenavi.sh | sh > proglist
