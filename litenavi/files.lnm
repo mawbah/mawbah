@@ -11,8 +11,6 @@ Module_List (){ #создаём список файлов
 }
 
 Module_Keys (){
-    echo !!!!!!!!!!!!!!!!!!Module_Keys
-    sleep 3
     case $REPLY in
         h${Lock}) #переход в родительский каталог
             if [[ "$PWD" != "${Root_Dir}" ]]; then #если текущий каталог не корень, то
@@ -38,7 +36,7 @@ Module_Keys (){
                     Module_List #создаём список файлов нового текущего каталога
                     LN_Screen_Rendering;; #отрисовываем экран
                 '-') #если текущий файл - просто файл, то пытаемся запустить
-                    printf "%s//%s" $PWD ${Current_File_Name}
+                    printf "%s/%s" $PWD ${Current_File_Name}
                     source "$PWD/${Current_File_Name}";;
             esac;;
     esac
