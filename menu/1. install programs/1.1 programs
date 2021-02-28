@@ -1,7 +1,5 @@
 #!/bin/bash
 export Lock="1"
-printf "%s EUID=%s" $(whoami) $EUID
-sleep 5
 cd "${Path_Install}/programs"
-Programs=$(${Path_Install}/litenavi/litenavi.sh)
+Programs=$(source ${Path_Install}/litenavi/litenavi.sh)
 pacman -Sy ${Programs}
