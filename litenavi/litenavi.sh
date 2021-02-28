@@ -136,7 +136,6 @@ while read -s -n1 < /dev/tty; do
             break;;
 
         *) #прочие нажатия
-            printf "%s" !!!!!!!!!!!!!?????????????? ${Module_Name}
             Module_Keys;;
     esac
     LN_Cursor_Rendering #отрисовываем текущую строку
