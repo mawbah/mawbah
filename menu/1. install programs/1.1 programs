@@ -5,4 +5,4 @@ source ${Path_Install}/litenavi/litenavi.sh
 #for Program in $(cat ${Path_Install}/prog_list); do
 #    ${Path_Install}/programs/${Program}/i.sh
 #done
-echo !!!!!!!${LN_Output}!!!!!!!!1
+echo !!!!!!!"${LN_Output}"!!!!!!!!1
