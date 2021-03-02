@@ -2,4 +2,4 @@
 ## mozilla firefox 
 ## оконный интернет браузер
 pacman -S --noconfirm firefox
-cp -r ${PATH_INSTALL}/progs/firefox/.mozilla /home/${UN}/
+cp -r ${Path_Install}/progs/firefox/.mozilla /home/${Name_User}/

@@ -2,5 +2,5 @@
 ## rtorrent
 ## торрент-клиент
 pacman -S --noconfirm rtorrent
-sed -i "s/mawbah/${UN}/g" ${PATH_INSTALL}/progs/rtorrent/.rtorrent.rc
-cp -r ${PATH_INSTALL}/progs/rtorrent/.rtorrent.rc /home/${UN}/
+sed -i "s/mawbah/${Name_User}/g" ${Path_Install}/programs/rtorrent/.rtorrent.rc
+cp -r ${Path_Install}/programs/rtorrent/.rtorrent.rc /home/${Name_User}/

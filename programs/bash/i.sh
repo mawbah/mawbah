@@ -2,5 +2,5 @@
 ## bash
 ## linux shell 
 pacman -S --noconfirm bash
-cp -r ${PATH_INSTALL}/progs/bash/.bash* /home/${UN}/
-cp -r ${PATH_INSTALL}/progs/bash/.bash* /root
+cp -r ${Path_Install}/programs/bash/.bash* /home/${Name_User}/
+cp -r ${Path_Install}/programs/bash/.bash* /root

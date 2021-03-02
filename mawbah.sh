@@ -9,9 +9,10 @@
 #2) клонировать git'ом и запустить из директории репозитория:
 #   $ git clone https://github.com/mawbah/mawbah.git "$HOME" && source "$HOME/mawbah/mawbah.sh"
 
-export Name_Script=$(basename $0)
+export Name_Script="$(basename $0)"
 export Time_Install="$(date +%d.%m.%y_%R)"
 export Link_Repository="https://github.com/mawbah/mawbah.git"
+export Name_User="$(whoami)"
 
 #если надо, клонируем репозиторий. Определяем путь до него.
 case "${Name_Script}" in

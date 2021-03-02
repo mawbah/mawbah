@@ -2,5 +2,5 @@
 ## rxvt-unicode 
 ## эмулятор терминала
 pacman -S --noconfirm rxvt-unicode 
-cp -r ${PATH_INSTALL}/progs/urxvt/.Xresources /home/${UN}
-xrdb /home/${UN}/.Xresources
+cp -r ${Path_Install}/programs/urxvt/.Xresources /home/${Name_User}
+xrdb /home/${Name_User}/.Xresources
