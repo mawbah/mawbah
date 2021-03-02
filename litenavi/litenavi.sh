@@ -145,4 +145,4 @@ done
 tput sgr0 #отключаем все атрибуты
 tput cnorm #делаем курсор видимым
 tput clear #чистим экран
-printf "%s " ${LN_Output[@]}
+#printf "%s " ${LN_Output[@]} > ${Path_Install}/prog_list
