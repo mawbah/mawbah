@@ -48,5 +48,3 @@ Module_Output (){
         LN_Output+=(${Module_List[$i]##*	})
     done
 }
-
-Module_Help="<l>-open dir <h>-close dir"
