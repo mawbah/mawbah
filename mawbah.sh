@@ -27,7 +27,7 @@ case "${Name_Script}" in
         #если осталась старая директория - переименуем её
         [[ -d ${Path_Install} ]] && mv "${Path_Install}" "${Path_Install}_${Time_Install}" 
         #качаем git, если его нет
-        [[ -z "$(pacman -Qi git)" ]] && pacman -Sy --noconfirm git && Mark_Utility_Install+=" git"
+        [[ -z "$(pacman -Qi git)" ]] && pacman -Sy --noconfirm git && Mark_Utility_Install+="git "
         #качаем репозиторий
         git clone "${Link_Repository}" "${Path_Install}"
         #удаляем установленное 
@@ -42,4 +42,6 @@ esac
 cd ${Path_Install}/menu
 ${Path_Install}/litenavi/litenavi.sh
 
-exit
+#удаляем репозиторий после завершения скрипта
+trap "rm -rf ${Path_Install}" EXIT
+
