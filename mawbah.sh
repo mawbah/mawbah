@@ -13,6 +13,7 @@ export Name_Script="$(basename $0)"
 export Time_Install="$(date +%d.%m.%y_%R)"
 export Link_Repository="https://github.com/mawbah/mawbah.git"
 export Name_User="$(whoami)"
+export Name_Host="$(uname -n)"
 
 #если надо, клонируем репозиторий. Определяем путь до него.
 case "${Name_Script}" in
