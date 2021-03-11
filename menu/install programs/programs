@@ -8,4 +8,5 @@ for Program in ${LN_Output}; do
     echo $EUID $(id -u)
     sleep 2
     [[ -z "$(pacman -Qi ${Program} 2> /dev/null)" ]] && ${Path_Install}/programs/${Program}/i.sh 
+    sleep 7
 done
