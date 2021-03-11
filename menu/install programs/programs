@@ -1,0 +1,11 @@
+#!/bin/bash
+Lock=1
+cd "${Path_Install}/programs"
+echo $EUID $(id -u)
+sleep 2
+source ${Path_Install}/litenavi/litenavi.sh
+for Program in ${LN_Output}; do
+    echo $EUID $(id -u)
+    sleep 2
+    [[ -z "$(pacman -Qi ${Program} 2> /dev/null)" ]] && ${Path_Install}/programs/${Program}/i.sh 
+done
