@@ -4,7 +4,7 @@ Root_Dir="${Path_Install}/programs"
 echo !!!!!!!!!!!!!!!!!!1
 sleep 2
 source ${Path_Install}/litenavi/litenavi.sh
-echo !!!!!!!!!!!!!!!!!!2
+echo ${LN_Output}
 sleep 2
 for Program in ${LN_Output}; do
     [[ -z "$(pacman -Qi ${Program})" ]] && pacman -Qi ${Program} 
