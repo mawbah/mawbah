@@ -43,5 +43,5 @@ cd ${Path_Install}/menu
 ${Path_Install}/litenavi/litenavi.sh
 
 #удаляем репозиторий после завершения скрипта
-trap "rm -rf ${Path_Install}" EXIT
+#trap "rm -rf ${Path_Install}" EXIT
 
