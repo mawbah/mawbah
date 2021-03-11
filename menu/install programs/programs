@@ -6,5 +6,6 @@ echo ${LN_Output}
 sleep 3
 for Program in ${LN_Output}; do
     [[ -z "$(pacman -Qi ${Program})" ]] && ${Path_Install}/programs/${Program}/i.sh 
-    sleep 5
+    echo !!!!!!!1111
+    sleep 10
 done
