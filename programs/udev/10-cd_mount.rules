@@ -1,2 +1,0 @@
-ACTION=="add", SUBSYSTEM=="block", KERNEL=="sr[0-9]", RUN+="/bin/systemctl start cd_mount@%k.service"
-ACTION=="remove", SUBSYSTEM=="block", KERNEL=="sr[0-9]", RUN+="/bin/systemctl stop cd_mount@%k.service"
