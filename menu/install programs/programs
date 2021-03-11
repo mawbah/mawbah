@@ -1,6 +1,6 @@
 #!/bin/bash
 Lock=1
-Root_Dir="${Path_Install}/programs"
+cd "${Path_Install}/programs"
 echo !!!!!!!!!!!!!!!!!!1
 sleep 2
 source ${Path_Install}/litenavi/litenavi.sh
