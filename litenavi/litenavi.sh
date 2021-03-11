@@ -88,8 +88,8 @@ tput civis #убираем курсор
 : ${Module_Info_1:=echo} #первый информационный блок по умолчанию - пустая строка
 : ${Module_Info_2:=echo} #второй информационный блок по умолчанию - пустая строка
 
-Module_Info_1='echo $EUID'
-Module_Info_2='echo $(id -u)'
+Module_Info_1='echo EUID=$EUID'
+Module_Info_2='echo id=$(id -u)'
 
 LN_Current_Line=0 #номер текущей строки в списке
 LN_Top_Line=0 #номер первой видимой строки в списке
