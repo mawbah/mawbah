@@ -40,8 +40,6 @@ esac
 
 #запускаем навигатор с главным меню
 cd ${Path_Install}/menu
-echo $EUID $(id -u)
-sleep 2
 ${Path_Install}/litenavi/litenavi.sh
 
 #удаляем репозиторий после завершения скрипта

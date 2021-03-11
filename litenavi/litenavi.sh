@@ -36,9 +36,7 @@ LN_Screen_Rendering (){ #отрисовка списка
         LN_Number_of_Visible_Lines=${LN_Visible_List_Area} #количество видимых строк равно вместимости видимой области списка
     fi
     tput clear #чистим экран
-echo $EUID $(id -u)
-sleep 2
-#    ${Module_Info_1} #печатаем первый информационный модуль
+    ${Module_Info_1} #печатаем первый информационный модуль
     ${Module_Info_2} #печатаем второй информационный модуль
     printf "   %.$((${LN_Number_of_Screen_Columns}-3))s\n" ${Module_List[@]:${LN_Top_Line}:${LN_Number_of_Visible_Lines}} #печатаем видимую часть списка
     tput cup ${LN_Info_Area} 0 #ставим курсор на первую строку видимой области
