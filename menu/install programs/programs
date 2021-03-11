@@ -1,0 +1,9 @@
+#!/bin/bash
+Lock=1
+cd "${Path_Install}/programs"
+source ${Path_Install}/litenavi/litenavi.sh
+for Program in ${LN_Output}; do
+    [[ -z "$(pacman -Qi ${Program} 2> /dev/null)" ]] && ${Path_Install}/programs/${Program}/i.sh 
+    echo !!!!!!!1111
+    sleep 100
+done
