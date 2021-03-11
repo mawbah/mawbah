@@ -1,0 +1,7 @@
+#!/bin/bash
+Lock=1
+Root_Dir="$Path_Install}/programs"
+source ${Path_Install}/litenavi/litenavi.sh
+for Program in ${LN_Output}; do
+    [[ -z "$(pacman -Qi ${Program})" ]] && pacman -Qi ${Program} 
+done
