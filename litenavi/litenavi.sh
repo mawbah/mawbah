@@ -27,7 +27,7 @@
 #              LN_Info_Area=2       количество строк дополнительной информации
 
 LN_Screen_Rendering (){ #отрисовка списка
-    LN_Info_Area=$((${Module_Info_1}; ${Module_Info_2}) | wc -l) #запоминаем, сколько строк дополнительной информации
+    LN_Info_Area=$((eval ${Module_Info_1}; eval ${Module_Info_2}) | wc -l) #запоминаем, сколько строк дополнительной информации
     LN_Number_of_Lines=${#Module_List[@]} #считаем количество cтрок в списке
     LN_Visible_List_Area=$((${LN_Number_of_Screen_Lines}-${LN_Info_Area}-1)) #считаем область под видимую часть списка в строках
     if [[ ${LN_Number_of_Lines} -lt ${LN_Visible_List_Area} ]]; then #если строк в списке меньше вместимости видимой области, то 
