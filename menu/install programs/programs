@@ -9,3 +9,4 @@ sleep 2
 for Program in ${LN_Output}; do
     [[ -z "$(pacman -Qi ${Program})" ]] && pacman -Qi ${Program} 
 done
+sleep 2
