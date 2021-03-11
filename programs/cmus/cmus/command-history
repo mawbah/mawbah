@@ -1,6 +1,0 @@
-q
-w
-set output_plugin=alsa
-set output_plugins=pulse
-set output_plugins=oss
-wq
