@@ -1,0 +1,40 @@
+
+export R='\e[0;31m'
+export NC='\e[0m'
+
+export DELAY=100
+export RATE=1000 
+export GRAPHICS_ADAPTER_DRIVER=""
+export LOCAL_TIME=true
+export NTP=true
+
+export RP=""
+export UN="root"
+export UP=""
+export HOSTNAME="host"
+
+export COUNTRY="Russia"
+export COUNTRY_SHORTNAME="RU"
+export LOCALE1="en_EN"
+export LOCALE2="ru_RU"
+export LOCALE3="reserve"
+export SYSTEM_LOCALE="LANG=ru_RU.UTF-8"
+export CONSOLE_FONT="ter-u12n"
+export Console_Keymap="ruwin_ct_sh-UTF-8"
+export X11_KEYMAP_LAYOUT="us,ru"
+export X11_KEYMAP_MODEL="pc104"
+export X11_KEYMAP_VARIANT="-"
+export X11_KEYMAP_OPTIONS="grp:shifts_toggle,terminate:ctrl_alt_bksp,grp_led:scroll"
+#export Default_Font="unicyr_8x16"
+export Default_Font="cyr-sun16"
+export TIME_ZONE="Asia/Vladivostok"
+
+[[ $(tty) =~ /dev/tty ]] && loadkeys "${Console_Keymap}" && setfont ${Default_Font}
+
+# выставляем время для журнала
+timedatectl set-ntp true
+
+# определяем режим загрузки
+[[ -d sys/firmware/efi ]] && BOOT_MODE="UEFI"
+BOOT_MODE=${BOOT_MODE:-BIOS}
+
