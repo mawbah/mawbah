@@ -37,8 +37,6 @@ Module_Keys (){
                     LN_Screen_Rendering;; #отрисовываем экран
                 '-') #если текущий файл - просто файл, то пытаемся запустить
                     "$PWD/${Current_File_Name}"
-                    echo !!!!111111
-                    sleep 5
                     LN_Screen_Rendering;; #отрисовываем экран
             esac;;
     esac
