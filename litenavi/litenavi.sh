@@ -27,7 +27,7 @@
 #              LN_Info_Area=2       количество строк дополнительной информации
 
 LN_Screen_Rendering (){ #отрисовка списка
-    LN_Info_Area=$((eval ${Module_Info_1}; eval ${Module_Info_2}) | wc -l) #запоминаем, сколько строк дополнительной информации
+    LN_Info_Area=$(($((eval ${Caption}; eval ${Module_Info_1}; eval ${Module_Info_2}) | wc -l)+2)) #запоминаем, сколько строк дополнительной информации
     LN_Number_of_Lines=${#Module_List[@]} #считаем количество cтрок в списке
     LN_Visible_List_Area=$((${LN_Number_of_Screen_Lines}-${LN_Info_Area}-1)) #считаем область под видимую часть списка в строках
     if [[ ${LN_Number_of_Lines} -lt ${LN_Visible_List_Area} ]]; then #если строк в списке меньше вместимости видимой области, то 
@@ -36,7 +36,10 @@ LN_Screen_Rendering (){ #отрисовка списка
         LN_Number_of_Visible_Lines=${LN_Visible_List_Area} #количество видимых строк равно вместимости видимой области списка
     fi
     tput clear #чистим экран
+    eval ${Caption} #печатаем заголовок
+    echo
     eval ${Module_Info_1} #печатаем первый информационный модуль
+    echo
     eval ${Module_Info_2} #печатаем второй информационный модуль
     printf "   %.$((${LN_Number_of_Screen_Columns}-3))s\n" ${Module_List[@]:${LN_Top_Line}:${LN_Number_of_Visible_Lines}} #печатаем видимую часть списка
     tput cup ${LN_Info_Area} 0 #ставим курсор на первую строку видимой области
@@ -85,6 +88,7 @@ IFS="
 tput civis #убираем курсор
 
 : ${Module_Name:=files.lnm} #модуль по умолчанию - работа с файлами
+: ${Caption:=echo} #первый информационный блок по умолчанию - пустая строка
 : ${Module_Info_1:=echo} #первый информационный блок по умолчанию - пустая строка
 : ${Module_Info_2:=echo} #второй информационный блок по умолчанию - пустая строка
 

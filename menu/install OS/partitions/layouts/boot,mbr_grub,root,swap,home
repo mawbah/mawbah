@@ -1,0 +1,64 @@
+#!/bin/bash
+#boot,mbr_grub,root,swap,home
+
+## выбор диска для системы, определение размера диска под систему в мегабайтах. ввод из текущего терминала. 
+echo
+lsblk -o NAME,TYPE,VENDOR,MODEL,SIZE | awk '$2=="disk" || NR==1 {print $0}'
+echo
+PS3=$(echo -e "${R}${Q1111} [boot,mbr_grub,root,swap,home]: ${NC}")
+select DISK in $(lsblk -Sln | awk '$3=="disk" {print $1}'); do
+    [[ -n ${DISK} ]] && break
+done
+
+## размонтирование swap  
+while [[ -n $(swapon --show=NAME --noheadings) ]]; do
+    swapoff $(swapon --show=NAME --noheadings)
+done
+    
+## размонтирование разделов выбранного диска
+while [[ -n $(lsblk -ln /dev/${DISK} | awk '$6=="part" && $7 {print $1}') ]]; do
+    for PART in $(lsblk -ln /dev/${DISK} | awk '$6=="part" && $7 {print $1}') ]]; do
+        fuser -km /dev/${PART}
+        umount -l /dev/${PART} 
+    done
+done
+
+## разметка системного диска
+DISK_SIZE=$(($(lsblk -lbn /dev/${DISK} | awk '$6=="disk" {print $4}') / (1024**2))) 
+BOOT_SIZE=200
+MBR_GRUB_SIZE=1
+SWAP_SIZE=$(($(cat /proc/meminfo | awk '$1=="MemTotal:" {print $2}') / 1024))
+ROOT_SIZE=20480
+HOME_SIZE=$((${DISK_SIZE} - ${SWAP_SIZE} - ${BOOT_SIZE} - ${MBR_GRUB_SIZE} - ${ROOT_SIZE}))
+
+echo -e "g\nw\n" | fdisk /dev/${DISK} # создаём gpt
+until [[ $(lsblk -ln /dev/${DISK} | grep "part" -c) = "5" ]]; do
+    echo -e "g\nw\n" | fdisk /dev/${DISK} # создаём gpt
+    echo -e "n\n1\n\n+"${BOOT_SIZE}"M\nw\n" | fdisk /dev/${DISK} # /boot
+    echo -e "n\n2\n\n+"${MBR_GRUB_SIZE}"M\nt\n2\n4\nw\n" | fdisk /dev/${DISK} # раздел для mbr grub
+    echo -e "n\n3\n\n+"${ROOT_SIZE}"M\nw\n" | fdisk /dev/${DISK} # /
+    echo -e "n\n4\n\n+"${HOME_SIZE}"M\nw\n" | fdisk /dev/${DISK} # /home
+    echo -e "n\n5\n\n\nw\n" | fdisk /dev/${DISK} # swap
+done
+
+## создание файловых систем
+mkfs.ext2 -L boot /dev/"${DISK}"'1' <<< Y
+sed -i "s/BOOT_PART=.*$/BOOT_PART=\"\/dev\/${DISK}\"/" ${HOME}/install/mawbah/mawbah.conf
+mkfs.ext4 -L root /dev/"${DISK}"'3' <<< Y
+mkfs.ext4 -L home /dev/"${DISK}"'4' <<< Y
+mkswap -L swap /dev/"${DISK}"'5'<<< Y
+
+## проверка и отключение необходимых точек монтирования 
+while [[ -n $(lsblk -ln | awk '$7=="/" || $7=="/boot" || $7=="/home" || $7=="[SWAP]" {print $7}') ]]; do
+    for MOUNT in $(lsblk -ln | awk '$7=="/" || $7=="/boot" || $7=="/home" || $7=="[SWAP]" {print $7}') ]]; do
+        fuser -km ${MOUNT}
+        umount -l ${MOUNT} 
+    done
+done
+
+## монтирование разделов
+mount /dev/"${DISK}"'3' /mnt
+mkdir /mnt/{home,boot}
+mount /dev/"${DISK}"'1' /mnt/boot
+mount /dev/"${DISK}"'4' /mnt/home
+swapon /dev/"${DISK}"'5'
