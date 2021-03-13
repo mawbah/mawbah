@@ -41,7 +41,7 @@ Module_List (){ #создаём список файлов
     Module_List=($(stat -c "${Options}	%n" ${Files_Block_1} ${Files_Block_2})) #cоздаём список фалов текущего каталога (табуляция в атрибутах!!!)
     echo !!!!!!1
     echo ${Filter_Input}
-    sleep 7
+    sleep 5
     if [[ -n ${Filter_Input} || -n ${Sort_Input} ]]; then
         Filter_and_Sort
         for i in $(seq 0 $((${#Filter_and_Sort[@]}-1))); do
