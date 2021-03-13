@@ -19,4 +19,4 @@ if [[ -z $(grep "^/dev/${Device} " /proc/mounts) ]]; then
     mount /dev/${Device} $PWD/${LN_Output}
 else
     umount /dev/${Device}
-esac
+fi
