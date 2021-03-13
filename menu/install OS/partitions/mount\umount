@@ -1,5 +1,4 @@
 #!/bin/bash
-echo !!!!1
 Caption='mount/umount block device'
 Lock_hl=1
 Lock_Space=1
