@@ -116,7 +116,7 @@ while read -s -n1 < /dev/tty; do
                 ((--LN_Current_Line)) #двигаем текущую строку вверх на один
             fi;;
 
-        ' ') #отметить строку
+        ' '${Lock_Space}) #отметить строку
             [[ ${LN_Mark_List[${LN_Current_Line}]} = ' ' ]] && LN_Mark_List[${LN_Current_Line}]='x' || LN_Mark_List[${LN_Current_Line}]=' '
             tput cup $((${LN_Current_Line}-${LN_Top_Line}+${LN_Info_Area})) 1 #ставим курсор в на метку текущей строки
             printf "%s" ${LN_Mark_List[${LN_Current_Line}]};;

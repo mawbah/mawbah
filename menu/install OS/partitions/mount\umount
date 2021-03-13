@@ -1,4 +1,22 @@
 #!/bin/bash
-Lock=1
-Module_Info_1='lsblk'
+Caption='mount/umount block device'
+Lock_hl=1
+Lock_Space=1
+
+Filter_Input="A=b*"
+Module_Info_1='lsblk -o NAME,TYPE,SIZE,LABEL,PARTLABEL,MOUNTPOINT,STATE,HOTPLUG,MODEL,VENDOR'
 Module_Info_2='Select partition:'
+cd "/dev"
+source ${Path_Install}/litenavi/litenavi.sh
+Device="${LN_Output}"
+
+if [[ -z $(grep "^/dev/${Device} " /proc/mounts) ]]; then
+    Lock_hl=''
+    Filter_Input="A=d*"
+    Module_Info_2='Select directory:'
+    cd "/"
+    source ${Path_Install}/litenavi/litenavi.sh
+    mount /dev/${Device} $PWD/${LN_Output}
+else
+    umount /dev/${Device}
+esac
