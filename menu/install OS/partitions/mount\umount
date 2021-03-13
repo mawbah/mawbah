@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 Caption='mount/umount block device'
 Lock_hl=1
 Lock_Space=1
