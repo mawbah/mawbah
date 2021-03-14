@@ -29,19 +29,19 @@ Debug (){
     printf "%30s [%s]\n" Module_List[${LN_Current_Line}] "${Module_List[${LN_Current_Line}]}"
 
     tput cup $(($x+13)) $y 
-    printf "%30s [%s]\n"  "${Filter_Input}"
+    printf "%30s [%s]\n" Filter_Input "${Filter_Input}"
     tput cup $(($x+14)) $y 
-    printf "%30s [%s]\n"  "${Filter}"
+    printf "%30s [%s]\n" Filter "${Filter}"
     tput cup $(($x+15)) $y 
-    printf "%30s [%s]\n"  "${List_FS[0]}"
+    printf "%30s [%s]\n" List_FS "${List_FS[0]}"
     tput cup $(($x+16)) $y 
-    printf "%30s [%s]\n"  "${Condition}"
+    printf "%30s [%s]\n" Condition "${Condition}"
     tput cup $(($x+17)) $y 
-    printf "%30s [%s]\n"  "${Filter_Value}"
+    printf "%30s [%s]\n" Filter_Value "${Filter_Value}"
     tput cup $(($x+18)) $y 
-    printf "%30s [%s]\n"  "${List_FS_Value}"
+    printf "%30s [%s]\n" List_FS_Value "${List_FS_Value}"
     tput cup $(($x+20)) $y 
-    printf "%30s [%s]\n"  "${Sort_Input}"
+    printf "%30s [%s]\n" Sort_Input "${Sort_Input}"
     tput cup $(($x+21)) $y 
-    printf "%30s [%s]\n"  "${Sort}"
+    printf "%30s [%s]\n" Sort "${Sort}"
 }
