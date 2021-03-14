@@ -9,6 +9,8 @@ Filter_and_Sort (){
     Sort=($(echo "${Sort_Input}" | sed "s|\-||g;s|\(.\)|\1\n|g")) 
     List_FS=($(stat -c "$(printf "%%%c	" "${Filter[@]}" "${Sort[@]}")" ${Files_Block_1} ${Files_Block_2} | nl -v 0 -n ln | sed "s|\([0-9]*\) *\t*\(.*$\)|\2\t\1|")) 
 
+    Debug
+    sleep 7
     for i in $(seq 0 $((${#Filter[@]}-1))); do
         Condition="$(echo "${Filter[$i]:1:2}" | sed "s|[^=\!]||g")" 
         Filter_Value=$(echo "${Filter[$i]:1}" | sed "s|^[=\!]*||") 

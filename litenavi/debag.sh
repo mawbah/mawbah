@@ -27,7 +27,21 @@ Debug (){
     printf "%30s [%s]\n" Info_Area "${LN_Info_Area}"
     tput cup $(($x+11)) $y 
     printf "%30s [%s]\n" Module_List[${LN_Current_Line}] "${Module_List[${LN_Current_Line}]}"
-    tput cup $(($x+12)) $y 
-#    printf "%30s [%s]\n"  "${LN_}"
-#    tput cup $(($x+15)) $y 
+
+    tput cup $(($x+13)) $y 
+    printf "%30s [%s]\n"  "${Filter_Input}"
+    tput cup $(($x+14)) $y 
+    printf "%30s [%s]\n"  "${Filter}"
+    tput cup $(($x+15)) $y 
+    printf "%30s [%s]\n"  "${List_FS[0]}"
+    tput cup $(($x+16)) $y 
+    printf "%30s [%s]\n"  "${Condition}"
+    tput cup $(($x+17)) $y 
+    printf "%30s [%s]\n"  "${Filter_Value}"
+    tput cup $(($x+18)) $y 
+    printf "%30s [%s]\n"  "${List_FS_Value}"
+    tput cup $(($x+20)) $y 
+    printf "%30s [%s]\n"  "${Sort_Input}"
+    tput cup $(($x+21)) $y 
+    printf "%30s [%s]\n"  "${Sort}"
 }
