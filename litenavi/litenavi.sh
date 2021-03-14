@@ -122,7 +122,7 @@ while read -s -n1 < /dev/tty; do
             tput cup $((${LN_Current_Line}-${LN_Top_Line}+${LN_Info_Area})) 1 #ставим курсор в на метку текущей строки
             printf "%s" ${LN_Mark_List[${LN_Current_Line}]};;
 
-        $(printf "\n")${Lock_Enter}) #применить
+        ${Lock_Enter}$(printf "\n")) #применить
             for i in ${!LN_Mark_List[@]}; do
                 [[ ${LN_Mark_List[$i]} = 'x' ]] && LN_Output+=($i)
             done
