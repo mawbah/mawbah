@@ -1,2 +1,15 @@
 #!/bin/bash
-/bin/fdisk
+Caption="echo 'fdisk'"
+
+Lock_hl=1
+Lock_Space=1
+
+Filter_Input="A=^b.*,T=.*0"
+Module_Info_1='lsblk -o NAME,TYPE,SIZE,LABEL,PARTLABEL,MOUNTPOINT,STATE,HOTPLUG,MODEL,VENDOR'
+Module_Info_2="echo 'Select disk:'"
+
+cd "/dev"
+source ${Path_Install}/litenavi/litenavi.sh
+Device="${LN_Output}"
+[[ -n ${Device} ]] && fdisk /dev/${Device}
+fi
