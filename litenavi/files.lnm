@@ -1,7 +1,7 @@
 #!/bin/bash
 : ${Root_Dir:=$PWD} #корневой каталог по умолчанию
 : ${Files_Block_2:=*} #маска для второго списка фалов по умолчанию (все видимые файлы)
-
+source ${Path_Install}/litenavi/debug.sh
 Filter_and_Sort (){
     : ${Filter_Input:=n=*}
     : ${Sort_Input:=n}
@@ -10,7 +10,7 @@ Filter_and_Sort (){
     List_FS=($(stat -c "$(printf "%%%c	" "${Filter[@]}" "${Sort[@]}")" ${Files_Block_1} ${Files_Block_2} | nl -v 0 -n ln | sed "s|\([0-9]*\) *\t*\(.*$\)|\2\t\1|")) 
 
     Debug
-    sleep 7
+    sleep 19
     for i in $(seq 0 $((${#Filter[@]}-1))); do
         Condition="$(echo "${Filter[$i]:1:2}" | sed "s|[^=\!]||g")" 
         Filter_Value=$(echo "${Filter[$i]:1}" | sed "s|^[=\!]*||") 
