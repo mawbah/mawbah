@@ -39,6 +39,10 @@ case "${Name_Script}" in
 esac
 
 #запускаем навигатор с главным меню
+Caption="echo $PWD | sed "s/\/home\///""
+
+Lock_Enter=1
+
 cd ${Path_Install}/menu
 ${Path_Install}/litenavi/litenavi.sh
 
