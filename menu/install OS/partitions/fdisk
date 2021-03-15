@@ -11,5 +11,5 @@ Module_Info_2="echo 'Select disk:'"
 cd "/dev"
 source ${Path_Install}/litenavi/litenavi.sh
 Device="${LN_Output}"
-[[ -n ${Device} ]] && fdisk /dev/${Device}
-sleep 55
+[[ -n ${Device} ]] && fdisk /dev/${Device} < /dev/tty
+sleep 5
