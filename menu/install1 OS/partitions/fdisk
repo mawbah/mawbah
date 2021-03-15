@@ -12,4 +12,4 @@ cd "/dev"
 source ${Path_Install}/litenavi/litenavi.sh
 Device="${LN_Output}"
 [[ -n ${Device} ]] && fdisk /dev/${Device}
-fi
+sleep 55
