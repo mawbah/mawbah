@@ -39,9 +39,9 @@ case "${Name_Script}" in
 esac
 
 #запускаем навигатор с главным меню
-Caption='echo $PWD | sed "s|${Path_Install}\/menu\/||"'
 Lock_Enter=1
 cd ${Path_Install}/menu
+Caption='echo $PWD | sed "s|${Path_Install}\/menu\/||"'
 source ${Path_Install}/litenavi/litenavi.sh
 
 #удаляем репозиторий после завершения скрипта
