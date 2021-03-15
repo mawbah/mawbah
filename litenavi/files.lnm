@@ -57,7 +57,6 @@ Module_Keys (){
             if [[ "$PWD" != "${Root_Dir}" ]]; then #если текущий каталог не корень, то
                 Old_Dir="$(basename $PWD)" #запоминаем имя текущего каталога
                 Module_Caption="${Module_Caption% -> ${Old_Dir}}"
-                echo !!!!!!!!!!!!1 Old_Dir=$Old_Dir
                 echo $Module_Caption
                 sleep 15
                 cd .. #переходим в родительский каталог

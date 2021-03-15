@@ -37,7 +37,7 @@ LN_Screen_Rendering (){ #отрисовка списка
     fi
     tput clear #чистим экран
     eval ${Module_Caption} #печатаем заголовок
-    echo
+    echo ${Module_Caption}
     eval ${Module_Info_1} #печатаем первый информационный модуль
     echo
     eval ${Module_Info_2} #печатаем второй информационный модуль
