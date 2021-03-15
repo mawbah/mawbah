@@ -41,7 +41,7 @@ esac
 #запускаем навигатор с главным меню
 Lock_Enter=1
 cd ${Path_Install}/menu
-Caption='echo $PWD | sed "s|${Path_Install}\/menu\/||"'
+Caption='echo $PWD | sed "s|${Path_Install}||"'
 source ${Path_Install}/litenavi/litenavi.sh
 
 #удаляем репозиторий после завершения скрипта
