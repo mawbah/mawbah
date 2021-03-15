@@ -3,12 +3,11 @@
 : ${Files_Block_2:=*} #маска для второго списка фалов по умолчанию (все видимые файлы)
 source ${Path_Install}/litenavi/debug.sh
 Filter_and_Sort (){
-    : ${Filter_Input:=n=*}
-    : ${Sort_Input:=n}
     Filter=($(echo "${Filter_Input}" | sed "s|,|\n|g")) 
     Sort=($(echo "${Sort_Input}" | sed "s|\-||g;s|\(.\)|\1\n|g")) 
     List_FS=($(stat -c "$(printf "%%%c	" "${Filter[@]}" "${Sort[@]}")" ${Files_Block_1} ${Files_Block_2} | nl -v 0 -n ln | sed "s|\([0-9]*\) *\t*\(.*$\)|\2\t\1|")) 
 
+    if [[ -n ${Filter_Input} ]]; then
     for i in $(seq 0 $((${#Filter[@]}-1))); do
         Condition="$(echo "${Filter[$i]:1:2}" | sed "s|[^=\!]||g")" 
         Filter_Value=$(echo "${Filter[$i]:1}" | sed "s|^[=\!]*||") 
@@ -26,13 +25,16 @@ Filter_and_Sort (){
         esac
         List_FS=($(printf "%s\n" ${List_FS[@]} | sed "s|^[^\t]*\t||"))
     done
+    fi
 
+    if [[ -n ${Sort_Input} ]]; then
     Sort=($(echo "${Sort_Input}" | sed "s|\([^\-]\)|\1\n|g")) 
     for i in $(seq 0 $((${#Sort[@]}-1))); do
         [[ ${Sort[$i]:0:1} = "-" ]] && Minus_Sign="-r" || Minus_Sign=""
         List_FS=($(printf "%s\n" ${List_FS[@]} | sort ${Minus_Sign}))
         List_FS=($(printf "%s\n" ${List_FS[@]} | sed "s|^[^\t]*\t||"))
     done
+    fi
 
     Filter_and_Sort=(${List_FS[@]})
 }
