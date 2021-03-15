@@ -49,6 +49,8 @@ Module_List (){ #создаём список файлов
         Module_List=(${Interim_List[@]}) 
     fi
     LN_Mark_List=($(printf "%.s \n" ${Module_List[@]}))
+    Debug
+    sleep 29
 }
 
 Module_Keys (){

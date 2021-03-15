@@ -1,5 +1,5 @@
 #!/bin/bash
-Module_Caption+=" -> $0"
+Module_Caption+=" -> $(basename $0)"
 echo $Module_Caption
 sleep 15
 Lock_hl=1
