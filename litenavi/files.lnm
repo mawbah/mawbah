@@ -57,8 +57,6 @@ Module_Keys (){
             if [[ "$PWD" != "${Root_Dir}" ]]; then #если текущий каталог не корень, то
                 Old_Dir="$(basename $PWD)" #запоминаем имя текущего каталога
                 Module_Caption="${Module_Caption% -> ${Old_Dir}}"
-                echo $Module_Caption
-                sleep 15
                 cd .. #переходим в родительский каталог
                 Module_List #cоздаём список файлов нового текущего каталога
                 LN_Current_Line=$(($(printf "%s\n" ${Module_List[@]} | sed -n "/${Old_Dir}/=;/${Old_Dir}/q; d")-1)) #ищем номер предыдущего текущего каталога в новом списке
@@ -75,8 +73,6 @@ Module_Keys (){
             case ${Current_File_Type:0:1} in
                 'd') #если текущий файл - каталог, то переходим в него
                     Module_Caption+=" -> ${Current_File_Name}"
-                echo $Module_Caption
-                sleep 15
                     cd "${Current_File_Name}"
                     LN_Current_Line=0 #текущую строку в начало списка
                     LN_Top_Line=0 #видимая область с начала списка
@@ -84,8 +80,6 @@ Module_Keys (){
                     LN_Screen_Rendering;; #отрисовываем экран
                 '-') #если текущий файл - просто файл, то пытаемся запустить
                     export Module_Caption
-                echo $Module_Caption
-                sleep 15
                     "$PWD/${Current_File_Name}"
                     LN_Screen_Rendering;; #отрисовываем экран
             esac;;
