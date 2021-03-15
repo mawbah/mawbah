@@ -1,7 +1,7 @@
 #!/bin/bash
 : ${Root_Dir:=$PWD} #корневой каталог по умолчанию
 : ${Files_Block_2:=*} #маска для второго списка фалов по умолчанию (все видимые файлы)
-source ${Path_Install}/litenavi/debug.sh
+
 Filter_and_Sort (){
     Filter=($(echo "${Filter_Input}" | sed "s|,|\n|g")) 
     Sort=($(echo "${Sort_Input}" | sed "s|\-||g;s|\(.\)|\1\n|g")) 
@@ -14,12 +14,12 @@ Filter_and_Sort (){
         case ${Condition} in
             =|==) 
                 for c in $(seq $((${#List_FS[@]}-1)) -1 0); do
-                    List_FS_Value=$(printf "%s\n" ${List_FS[$c]} | sed "s|\t.*$||") 
+                    List_FS_Value=$(printf "%s\n" ${List_FS[$c]%%	*}) 
                     [[ ${List_FS_Value} =~ ${Filter_Value} ]] || List_FS=("${List_FS[@]:0:$c}" "${List_FS[@]:$(($c+1))}")
                 done;;
             !=) 
                 for c in $(seq $((${#List_FS[@]}-1)) -1 0); do
-                    List_FS_Value=$(printf "%s\n" ${List_FS[$c]} | sed "s|\t.*$||") 
+                    List_FS_Value=$(printf "%s\n" ${List_FS[$c]%%	*}) 
                     [[ ${List_FS_Value} =~ ${Filter_Value} ]] && List_FS=("${List_FS[@]:0:$c}" "${List_FS[@]:$(($c+1))}")
                 done;;
         esac
