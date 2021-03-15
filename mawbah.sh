@@ -39,9 +39,9 @@ case "${Name_Script}" in
 esac
 
 #запускаем навигатор с главным меню
-export Lock_Enter=1
+Lock_Enter=1
 cd ${Path_Install}/menu
-${Path_Install}/litenavi/litenavi.sh
+source ${Path_Install}/litenavi/litenavi.sh
 
 #удаляем репозиторий после завершения скрипта
 #trap "rm -rf ${Path_Install}" EXIT
