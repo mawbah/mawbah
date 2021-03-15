@@ -44,4 +44,7 @@ Debug (){
     printf "%30s [%s]\n" Sort_Input "${Sort_Input}"
     tput cup $(($x+21)) $y 
     printf "%30s [%s]\n" Sort "${Sort}"
+
+    tput cup $(($x+23)) $y 
+    printf "%30s [%s]\n"  Module_List "${Module_List[@]}"
 }
