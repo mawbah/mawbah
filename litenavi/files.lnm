@@ -58,7 +58,7 @@ Module_Keys (){
                 Old_Dir="$(basename $PWD)" #запоминаем имя текущего каталога
                 Module_Caption="${Module_Caption% -> ${Old_Dir}}"
     Debug
-    sleep 29
+    sleep 10
                 cd .. #переходим в родительский каталог
                 Module_List #cоздаём список файлов нового текущего каталога
                 LN_Current_Line=$(($(printf "%s\n" ${Module_List[@]} | sed -n "/${Old_Dir}/=;/${Old_Dir}/q; d")-1)) #ищем номер предыдущего текущего каталога в новом списке
