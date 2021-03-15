@@ -39,7 +39,7 @@ case "${Name_Script}" in
 esac
 
 #запускаем навигатор с главным меню
-Module_Caption='echo '
+#Module_Caption='echo '
 Lock_Enter=1
 cd ${Path_Install}/menu
 source ${Path_Install}/litenavi/litenavi.sh
