@@ -1,5 +1,7 @@
 #!/bin/bash
 Module_Caption+=" -> $(basename $0)"
+echo $0
+echo $(basename $0)
 
 Lock_hl=1
 Lock_Space=1
