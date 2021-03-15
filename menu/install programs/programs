@@ -1,5 +1,5 @@
 #!/bin/bash
-Caption="echo 'install program'"
+Module_Caption+="-> $0 "
 Lock_hl=1
 
 Module_Info_2="echo 'Select programs (Space) and install (Enter):'"

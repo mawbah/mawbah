@@ -1,5 +1,5 @@
 #!/bin/bash
-Caption="echo 'mount/umount block device'"
+Module_Caption+="-> $0 "
 
 Lock_hl=1
 Lock_Space=1
