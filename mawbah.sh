@@ -39,12 +39,12 @@ case "${Name_Script}" in
 esac
 
 #запускаем навигатор с главным меню
-Caption="echo $PWD | sed "s/\/home\///""
+export Caption="echo $PWD | sed "s/\/home\///""
 
-Lock_Enter=1
+export Lock_Enter=1
 
 cd ${Path_Install}/menu
-source ${Path_Install}/litenavi/litenavi.sh
+${Path_Install}/litenavi/litenavi.sh
 
 #удаляем репозиторий после завершения скрипта
 #trap "rm -rf ${Path_Install}" EXIT
