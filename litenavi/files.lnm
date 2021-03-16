@@ -12,7 +12,7 @@ Filter_and_Sort (){
         Condition="$(echo "${Filter[$i]:1:2}" | sed "s|[^=\!]||g")" 
         Filter_Value=$(echo "${Filter[$i]:1}" | sed "s|^[=\!]*||") 
         Debug
-        sleep 40
+        sleep 10
         case ${Condition} in
             =|==) 
                 for c in $(seq $((${#List_FS[@]}-1)) -1 0); do
