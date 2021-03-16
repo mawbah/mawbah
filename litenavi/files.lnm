@@ -23,7 +23,7 @@ Filter_and_Sort (){
     echo
     echo 
     echo
-    lala=(${Filter_Input//,/)
+    lala=(${Filter_Input//,/})
     echo lala0=${lala[0]}
     echo lala1=${lala[1]}
     echo lala2=${lala[2]}
