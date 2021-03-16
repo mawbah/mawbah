@@ -31,7 +31,7 @@ Debug (){
     tput cup $(($x+13)) $y 
     printf "%30s [%s]\n" Filter_Input "${Filter_Input}"
     tput cup $(($x+14)) $y 
-    printf "%30s [%s]\n" Filter "${Filter}"
+    printf "%30s [%s]\n" Filter "${Filter[0]}"
     tput cup $(($x+15)) $y 
     printf "%30s [%s]\n" List_FS "${List_FS[0]}"
     tput cup $(($x+16)) $y 
