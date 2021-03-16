@@ -3,7 +3,7 @@
 : ${Files_Block_2:=*} #маска для второго списка фалов по умолчанию (все видимые файлы)
 source ${Path_Install}/litenavi/debug.sh
 Filter_and_Sort (){
-    lala=(echo "${Filter_Input//,/}")
+    lala=(${Filter_Input//,/})
     echo ${lala[@]}
     echo ${lala[0]}
     echo ${lala[1]}
