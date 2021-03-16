@@ -3,11 +3,32 @@
 : ${Files_Block_2:=*} #маска для второго списка фалов по умолчанию (все видимые файлы)
 source ${Path_Install}/litenavi/debug.sh
 Filter_and_Sort (){
+    echo 
+    echo 
+    echo 
+    echo 
+    echo 
+    echo 
+    echo 
+    echo 
+    echo 
+    echo
+    echo
+    echo
+    echo
+    echo
+    echo
+    echo
+    echo
+    echo
+    echo 
+    echo
     lala=(${Filter_Input//,/})
-    echo ${lala[@]}
     echo ${lala[0]}
     echo ${lala[1]}
     echo ${lala[2]}
+    echo 
+    echo
     sleep 6
     Filter=($(printf "%s" ${Filter_Input//,/\\n})) # | sed "s|,|\n|g")) 
     Sort=($(echo "${Sort_Input}" | sed "s|\-||g;s|\(.\)|\1\n|g")) 
