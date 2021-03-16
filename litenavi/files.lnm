@@ -25,7 +25,7 @@ Filter_and_Sort (){
                     [[ ${List_FS_Value} =~ ${Filter_Value} ]] && List_FS=("${List_FS[@]:0:$c}" "${List_FS[@]:$(($c+1))}")
                 done;;
         esac
-        List_FS=($(printf "%s\n" ${List_FS[@]//*    /}))
+        List_FS=($(printf "%s\n" ${List_FS[@]} | sed "s|^[^\t]*\t||"))
     done
     fi
 
