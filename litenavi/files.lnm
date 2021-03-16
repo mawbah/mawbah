@@ -24,9 +24,9 @@ Filter_and_Sort (){
     echo 
     echo
     lala=(${Filter_Input//,/})
-    echo ${lala[0]}
-    echo ${lala[1]}
-    echo ${lala[2]}
+    echo lala0=${lala[0]}
+    echo lala1=${lala[1]}
+    echo lala2${lala[2]}
     echo 
     echo
     sleep 6
